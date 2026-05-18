@@ -63,16 +63,16 @@ jobs:
           script: |
 
             echo "Pull latest image from Docker Hub"
-            docker pull ${{ secrets.DOCKER_USERNAME }}/focused_sinoussi:churn-api
+            docker pull ${{ secrets.DOCKER_USERNAME }}/churn-api:latest
 
             echo "Stop existing container"
-            docker stop churn-api || true
+            docker stop churn-prediction || true
 
             echo "Remove existing container"
             docker rm churn-prediction || true
 
            
             echo "Run new container"
-            docker run -d --name churn-prediction -p 80:8000 ${{ secrets.DOCKER_USERNAME }}/focused_sinoussi:churn-api
+            docker run -d --name churn-prediction -p 80:8000 ${{ secrets.DOCKER_USERNAME }}/churn-api:latest
 
             echo "Deployment completed successfully"
